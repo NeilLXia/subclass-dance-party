@@ -23,11 +23,27 @@ $(document).ready(function() {
     // make a dancer with a random position
 
     var dancer = dancerMakerFunction(
-      $("body").height() * Math.random(),
-      $("body").width() * Math.random(),
-      Math.random() * 1000
+      $("body").height() * (Math.random() * 0.9 + 0.05),
+      $("body").width() * (Math.random() * 0.9 + 0.05),
+      Math.random() * 500 + 500
     );
     $('body').append(dancer.$node);
+  });
+
+  $('.lineUp').on('click', function(event) {
+    // Look through some sort of array with all the dancers
+    let dancers = document.getElementsByClassName('dancer');
+
+    let spriteSpacing = ($("body").width() - 200)/dancers.length; 1000 -200 = 800
+    // For each dancer, we'll reassign their position (top and left)
+    for (let index = 0; index < dancers.length; index++) {
+      // Set their top as a constant, and left based on the iterator
+
+      $(dancers[index]).css({
+        top: 500,
+        left: (index * spriteSpacing) + 100
+      });
+    }
   });
 });
 
